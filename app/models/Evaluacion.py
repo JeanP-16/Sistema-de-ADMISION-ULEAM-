@@ -304,7 +304,7 @@ if __name__ == "__main__":
     )
     
     puntaje1 = eval1.calcular_puntaje_total()
-    print(f"✅ {eval1}")
+    print(f" {eval1}")
     
     # ===== EJEMPLO 2: Evaluación MÉRITO =====
     print("\n\nEJEMPLO 2: Evaluación con Cálculo MÉRITO ACADÉMICO")
@@ -326,7 +326,7 @@ if __name__ == "__main__":
     )
     
     puntaje2 = eval2.calcular_puntaje_total()
-    print(f"✅ {eval2}")
+    print(f" {eval2}")
     
     # ===== EJEMPLO 3: Evaluación INCLUSIÓN =====
     print("\n\nEJEMPLO 3: Evaluación con Cálculo INCLUSIÓN SOCIAL")
@@ -350,7 +350,7 @@ if __name__ == "__main__":
     )
     
     puntaje3 = eval3.calcular_puntaje_total()
-    print(f"✅ {eval3}")
+    print(f" {eval3}")
     
     # ===== EJEMPLO 4: Comparación de tipos de cálculo =====
     print("\n\nEJEMPLO 4: Comparación - Mismas notas, diferentes tipos de cálculo")
@@ -392,25 +392,25 @@ if __name__ == "__main__":
             calificacion_colegio=9.0
         )
     except ValueError as e:
-        print(f"❌ ERROR CAPTURADO: {e}")
+        print(f" ERROR CAPTURADO: {e}")
     
     print("\n" + "=" * 80)
     print("PRINCIPIOS SOLID APLICADOS:")
     print("=" * 80)
-    print("✅ S - Single Responsibility: Cada clase tiene UNA responsabilidad")
+    print(" S - Single Responsibility: Cada clase tiene UNA responsabilidad")
     print("   • Evaluacion: gestión de evaluación")
     print("   • CalculadoraPuntaje: cálculo de puntajes")
     print("   • ValidadorNotas: validación de notas")
     print()
-    print("✅ O - Open/Closed: Extensible sin modificar código existente")
+    print(" O - Open/Closed: Extensible sin modificar código existente")
     print("   • Nuevos tipos de cálculo se agregan en CalculadoraPuntaje")
     print("   • Nuevas validaciones se agregan en ValidadorNotas")
     print()
-    print("✅ L - Liskov Substitution: Evaluacion sustituye a sus interfaces")
+    print(" L - Liskov Substitution: Evaluacion sustituye a sus interfaces")
     print()
-    print("✅ I - Interface Segregation: Interfaces específicas y pequeñas")
+    print(" I - Interface Segregation: Interfaces específicas y pequeñas")
     print("   • IRegistrableNotas, ICalculablePuntaje")
     print()
-    print("✅ D - Dependency Inversion: Depende de abstracciones")
+    print(" D - Dependency Inversion: Depende de abstracciones")
     print("   • Evaluacion recibe CalculadoraPuntaje y ValidadorNotas")
     print("=" * 80)
