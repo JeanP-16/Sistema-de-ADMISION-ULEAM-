@@ -5,11 +5,11 @@ Fecha: Diciembre 2025
 Descripción: Versión COMPLETA que aplica TODOS los Principios SOLID
 
 PRINCIPIOS SOLID APLICADOS:
-✅ S (SRP): Responsabilidades separadas en clases distintas
-✅ O (OCP): Extensible mediante herencia múltiple
-✅ L (LSP): Sustituible por clases padre
-✅ I (ISP): Interfaces pequeñas y específicas
-✅ D (DIP): Depende de abstracciones, usa inyección de dependencias
+ S (SRP): Responsabilidades separadas en clases distintas
+ O (OCP): Extensible mediante herencia múltiple
+ L (LSP): Sustituible por clases padre
+ I (ISP): Interfaces pequeñas y específicas
+ D (DIP): Depende de abstracciones, usa inyección de dependencias
 """
 
 from datetime import datetime
@@ -108,11 +108,11 @@ class RegistroNacional(DatosPersonales, Validable):
     Gestiona el Registro Nacional completo del postulante
     
     PRINCIPIOS SOLID APLICADOS:
-    ✅ S (SRP): Hereda responsabilidades separadas
-    ✅ O (OCP): Extensible mediante herencia múltiple
-    ✅ L (LSP): Sustituye correctamente a DatosPersonales y Validable
-    ✅ I (ISP): Implementa interfaces pequeñas
-    ✅ D (DIP): Depende de RepositorioAbstracto (inyección)
+     S (SRP): Hereda responsabilidades separadas
+     O (OCP): Extensible mediante herencia múltiple
+     L (LSP): Sustituye correctamente a DatosPersonales y Validable
+     I (ISP): Implementa interfaces pequeñas
+     D (DIP): Depende de RepositorioAbstracto (inyección)
     """
     
     _contador = 0
@@ -202,7 +202,7 @@ class RegistroNacional(DatosPersonales, Validable):
         self.observacion_poblacion = None
         self.observacion_acepta_cupo = None
         
-        # ✅ PRINCIPIO D (DIP): Usa abstracción en lugar de diccionario directo
+        #  PRINCIPIO D (DIP): Usa abstracción en lugar de diccionario directo
         RegistroNacional._repositorio.guardar(identificacion, self)
     
     # ==================== MÉTODOS DE CÁLCULO ====================
@@ -274,7 +274,7 @@ class RegistroNacional(DatosPersonales, Validable):
     
     def validar_completitud(self) -> bool:
         """
-        ✅ PRINCIPIO L (LSP): Implementa el método abstracto de Validable
+         PRINCIPIO L (LSP): Implementa el método abstracto de Validable
         Valida que el registro esté completo
         """
         if not all([self.nombres, self.apellidos, self.identificacion]):
@@ -376,17 +376,17 @@ class RegistroNacional(DatosPersonales, Validable):
     
     @staticmethod
     def consultar_por_cedula(identificacion: str) -> Optional['RegistroNacional']:
-        """✅ DIP: Usa repositorio abstracto"""
+        """ DIP: Usa repositorio abstracto"""
         return RegistroNacional._repositorio.buscar(identificacion)
     
     @staticmethod
     def existe_registro(identificacion: str) -> bool:
-        """✅ DIP: Usa repositorio abstracto"""
+        """ DIP: Usa repositorio abstracto"""
         return RegistroNacional._repositorio.existe(identificacion)
     
     @staticmethod
     def listar_todos_registros():
-        """✅ DIP: Usa repositorio abstracto"""
+        """ DIP: Usa repositorio abstracto"""
         registros_db = RegistroNacional._repositorio.listar_todos()
         
         if not registros_db:
@@ -417,7 +417,7 @@ class RegistroNacional(DatosPersonales, Validable):
     @classmethod
     def cambiar_repositorio(cls, repositorio: RepositorioAbstracto):
         """
-        ✅ DIP: Permite cambiar el repositorio en runtime
+         DIP: Permite cambiar el repositorio en runtime
         Ejemplo: cambiar de memoria a MySQL sin modificar la clase
         """
         cls._repositorio = repositorio
@@ -428,18 +428,18 @@ if __name__ == "__main__":
     print("\n" + "=" * 80)
     print("DEMOSTRACIÓN: TODOS LOS PRINCIPIOS SOLID")
     print("=" * 80)
-    print("\n✅ S (SRP): Responsabilidades separadas")
+    print("\n S (SRP): Responsabilidades separadas")
     print("   - DatosPersonales: solo datos básicos")
     print("   - Validable: solo validación")
     print("   - RepositorioAbstracto: solo almacenamiento")
-    print("\n✅ O (OCP): Extensible mediante herencia múltiple")
-    print("\n✅ L (LSP): RegistroNacional sustituye a sus clases padre")
-    print("\n✅ I (ISP): Interfaces pequeñas (Validable tiene 1 método)")
-    print("\n✅ D (DIP): Depende de RepositorioAbstracto, no de implementación")
+    print("\n O (OCP): Extensible mediante herencia múltiple")
+    print("\n L (LSP): RegistroNacional sustituye a sus clases padre")
+    print("\n I (ISP): Interfaces pequeñas (Validable tiene 1 método)")
+    print("\n D (DIP): Depende de RepositorioAbstracto, no de implementación")
     print("=" * 80)
     
     # Ejemplo 1: Registro completo
-    print("\n\n📝 EJEMPLO 1: Registro Completo")
+    print("\n\n EJEMPLO 1: Registro Completo")
     print("-" * 80)
     
     registro1 = RegistroNacional(
@@ -453,11 +453,11 @@ if __name__ == "__main__":
     registro1.completar_datos_academicos("U.E. MANTA", "FISCAL", 9.5, "SI")
     
     if registro1.validar_completitud():
-        print("\n✅ Registro validado exitosamente")
+        print("\n Registro validado exitosamente")
         registro1.mostrar_resumen_completo()
     
     # Ejemplo 2: Registro incompleto
-    print("\n\n📝 EJEMPLO 2: Registro Incompleto")
+    print("\n\n EJEMPLO 2: Registro Incompleto")
     print("-" * 80)
     
     registro2 = RegistroNacional(
@@ -468,11 +468,11 @@ if __name__ == "__main__":
     registro2.completar_datos_personales("2006-08-22", "MUJER", "MESTIZO")
     
     if not registro2.validar_completitud():
-        print(f"\n❌ Registro incompleto: {registro2.observacion_estado}")
+        print(f"\n Registro incompleto: {registro2.observacion_estado}")
     
     # Ejemplo 3: Demostrar DIP
-    print("\n\n🔄 EJEMPLO 3: Cambio de Repositorio (DIP)")
+    print("\n\n EJEMPLO 3: Cambio de Repositorio (DIP)")
     print("-" * 80)
     print("Actualmente usando: RepositorioEnMemoria")
     print("Se podría cambiar a: RepositorioMySQL, RepositorioPostgreSQL, etc.")
-    print("Sin modificar la clase RegistroNacional ✅")
+    print("Sin modificar la clase RegistroNacional ")
