@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - SIPU ULEAM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Replica.css') }}">
+    <style>
+        .dashboard {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .menu-opciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .opcion {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .opcion:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>🎓 Sistema SIPU - ULEAM</h1>
+        <h3>Bienvenido: {{ nombre }}</h3>
+        <p>Cédula: {{ cedula }}</p>
+        
+        <h2>📋 Menú de Opciones</h2>
+        <div class="menu-opciones">
+            <a href="/opcion1" class="opcion">1️⃣ Ver Sedes</a>
+            <a href="/opcion2" class="opcion">2️⃣ Ver Carreras</a>
+            <a href="/opcion3" class="opcion">3️⃣ Verificar Registro</a>
+            <a href="/opcion4" class="opcion">4️⃣ Ver Postulantes</a>
+            <a href="/opcion5" class="opcion">5️⃣ Crear Inscripción</a>
+            <a href="/opcion6" class="opcion">6️⃣ Consultar Evaluación</a>
+            <a href="/opcion7" class="opcion">7️⃣ Consultar Asignación</a>
+            <a href="/opcion8" class="opcion">8️⃣ Consultar Puntaje</a>
+        </div>
+        
+        <br><br>
+        <a href="/" style="color: red;">🚪 Cerrar Sesión</a>
+    </div>
+</body>
+</html>

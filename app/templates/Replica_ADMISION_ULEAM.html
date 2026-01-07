@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina Principal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Replica.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h2>DBCANU | ADMISION | INICIAR SESIÓN</h2>
+            <form action="/login" method="POST" name="form">
+                <label>Usuario</label>
+                <input type="text" name="usuario" required><br><br>
+    
+                <label>Contraseña</label>
+                <input type="password" name="password" required><br><br>
+                
+                <a href="" target="_blank">Recuperar Contraseña</a><br>
+                <button type="button">Regítrate aquí</button>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </header>        
+</body>
+</html>
