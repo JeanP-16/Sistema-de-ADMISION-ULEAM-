@@ -5,11 +5,11 @@ Fecha: Diciembre 2025
 Descripción: Representa a un postulante en el sistema de admisión ULEAM
 
 PRINCIPIOS SOLID APLICADOS:
-✅ S (SRP): Responsabilidades separadas (Persona base, validaciones)
-✅ O (OCP): Extensible mediante herencia y polimorfismo
-✅ L (LSP): Sustituible por clase padre Persona
-✅ I (ISP): Interfaces pequeñas y específicas
-✅ D (DIP): Depende de abstracciones, usa inyección de dependencias
+ S (SRP): Responsabilidades separadas (Persona base, validaciones)
+ O (OCP): Extensible mediante herencia y polimorfismo
+ L (LSP): Sustituible por clase padre Persona
+ I (ISP): Interfaces pequeñas y específicas
+ D (DIP): Depende de abstracciones, usa inyección de dependencias
 """
 
 from datetime import datetime
@@ -102,11 +102,11 @@ class Postulante(Persona):
     Representa a una persona que se postula al sistema de admisión.
     
     PRINCIPIOS SOLID APLICADOS:
-    ✅ S (SRP): Hereda de Persona (responsabilidades separadas)
-    ✅ O (OCP): Extensible - se pueden crear PostulanteMenor, PostulanteExtranjero, etc.
-    ✅ L (LSP): Sustituye correctamente a Persona
-    ✅ I (ISP): Implementa interfaces específicas (ValidadorIdentidad, CalculadorEdad)
-    ✅ D (DIP): Usa RepositorioPostulantesAbstracto (inyección)
+     S (SRP): Hereda de Persona (responsabilidades separadas)
+     O (OCP): Extensible - se pueden crear PostulanteMenor, PostulanteExtranjero, etc.
+     L (LSP): Sustituye correctamente a Persona
+     I (ISP): Implementa interfaces específicas (ValidadorIdentidad, CalculadorEdad)
+     D (DIP): Usa RepositorioPostulantesAbstracto (inyección)
     """
     
     _contador_postulantes = 0
@@ -135,7 +135,7 @@ class Postulante(Persona):
         self._puntajes = []
         self._asignacion = None
         
-        # ✅ PRINCIPIO D (DIP): Guardar usando repositorio abstracto
+        #  PRINCIPIO D (DIP): Guardar usando repositorio abstracto
         Postulante._repositorio.guardar(self)
         
         print(f" ✓ Postulante creado: {self.nombre_completo} (ID: {self.id_postulante})")
@@ -324,11 +324,11 @@ if __name__ == "__main__":
     print("\n" + "=" * 80)
     print("DEMOSTRACIÓN: TODOS LOS PRINCIPIOS SOLID - POSTULANTE")
     print("=" * 80)
-    print("\n✅ S (SRP): Persona solo datos básicos, Postulante gestiona inscripciones")
-    print("✅ O (OCP): Se pueden crear PostulanteMenor, PostulanteExtranjero sin modificar Postulante")
-    print("✅ L (LSP): Todas las subclases sustituyen a Postulante correctamente")
-    print("✅ I (ISP): Interfaces específicas (ValidadorIdentidad, CalculadorEdad)")
-    print("✅ D (DIP): Usa RepositorioPostulantesAbstracto, no diccionario directo")
+    print("\n S (SRP): Persona solo datos básicos, Postulante gestiona inscripciones")
+    print(" O (OCP): Se pueden crear PostulanteMenor, PostulanteExtranjero sin modificar Postulante")
+    print(" L (LSP): Todas las subclases sustituyen a Postulante correctamente")
+    print(" I (ISP): Interfaces específicas (ValidadorIdentidad, CalculadorEdad)")
+    print(" D (DIP): Usa RepositorioPostulantesAbstracto, no diccionario directo")
     print("=" * 80)
     
     # Ejemplo 1: Postulante regular
@@ -394,6 +394,6 @@ if __name__ == "__main__":
     print("\n\n DEMOSTRACIÓN DIP:")
     print("-" * 80)
     print(f" Total postulantes: {Postulante.obtener_total_postulantes()}")
-    print(" Se puede cambiar a RepositorioMySQL sin modificar la clase ✅")
+    print(" Se puede cambiar a RepositorioMySQL sin modificar la clase ")
     
     print("\n" + "=" * 80)

@@ -329,7 +329,7 @@ if __name__ == "__main__":
     print(f"\nResumen: {paa1.obtener_resumen()}")
     
     # ===== CASO 2: Estudiante con vulnerabilidad =====
-    print("\n\n🏘️ CASO 2: Estudiante con vulnerabilidad socioeconómica")
+    print("\n\n CASO 2: Estudiante con vulnerabilidad socioeconómica")
     print("-" * 80)
     
     paa2 = PoliticaAccionAfirmativa(
@@ -347,7 +347,7 @@ if __name__ == "__main__":
     print(f"\nResumen: {paa2.obtener_resumen()}")
     
     # ===== CASO 3: Población general =====
-    print("\n\n👥 CASO 3: Población general")
+    print("\n\n CASO 3: Población general")
     print("-" * 80)
     
     paa3 = PoliticaAccionAfirmativa(
@@ -361,7 +361,7 @@ if __name__ == "__main__":
     print(f"\nResumen: {paa3.obtener_resumen()}")
     
     # ===== CASO 4: Bachiller de pueblos y nacionalidades =====
-    print("\n\n🌾 CASO 4: Bachiller de pueblos y nacionalidades")
+    print("\n\n CASO 4: Bachiller de pueblos y nacionalidades")
     print("-" * 80)
     
     paa4 = PoliticaAccionAfirmativa(
@@ -377,25 +377,25 @@ if __name__ == "__main__":
     paa4.calcular_segmento()
     print(f"\nResumen: {paa4.obtener_resumen()}")
     
-    print(f"\n📊 Total PAA creadas: {PoliticaAccionAfirmativa.obtener_total()}")
+    print(f"\n Total PAA creadas: {PoliticaAccionAfirmativa.obtener_total()}")
     
     print("\n" + "=" * 80)
     print("PRINCIPIOS SOLID APLICADOS:")
     print("=" * 80)
-    print("✅ S - Single Responsibility: Cada clase tiene UNA responsabilidad")
+    print(" S - Single Responsibility: Cada clase tiene UNA responsabilidad")
     print("   • PoliticaAccionAfirmativa: gestión de PAA")
     print("   • EvaluadorCondicionesSociales: evaluación de condiciones")
     print("   • CalculadorSegmento: cálculo de segmento")
     print()
-    print("✅ O - Open/Closed: Extensible sin modificar código existente")
+    print(" O - Open/Closed: Extensible sin modificar código existente")
     print("   • Nuevas evaluaciones en EvaluadorCondicionesSociales")
     print("   • Nuevos segmentos en CalculadorSegmento")
     print()
-    print("✅ L - Liskov Substitution: PAA sustituye a sus interfaces")
+    print(" L - Liskov Substitution: PAA sustituye a sus interfaces")
     print()
-    print("✅ I - Interface Segregation: Interfaces específicas y pequeñas")
+    print(" I - Interface Segregation: Interfaces específicas y pequeñas")
     print("   • IAplicableCondicionSocial, IAplicableRuralidad, etc.")
     print()
-    print("✅ D - Dependency Inversion: Depende de abstracciones")
+    print(" D - Dependency Inversion: Depende de abstracciones")
     print("   • PAA recibe EvaluadorCondicionesSociales y CalculadorSegmento")
     print("=" * 80)

@@ -307,7 +307,7 @@ if __name__ == "__main__":
     formateador = FormateadorSalidaPuntaje()
     
     # ===== EJEMPLO 1: Puntaje con mérito alto =====
-    print("\n\n🎓 EJEMPLO 1: Estudiante con alto rendimiento")
+    print("\n\n EJEMPLO 1: Estudiante con alto rendimiento")
     print("-" * 80)
     
     puntaje1 = PuntajePostulacion(
@@ -325,7 +325,7 @@ if __name__ == "__main__":
     puntaje1.mostrar_desglose()
     
     # ===== EJEMPLO 2: Puntaje sin méritos =====
-    print("\n\n📝 EJEMPLO 2: Estudiante sin méritos adicionales")
+    print("\n\n EJEMPLO 2: Estudiante sin méritos adicionales")
     print("-" * 80)
     
     puntaje2 = PuntajePostulacion(
@@ -342,7 +342,7 @@ if __name__ == "__main__":
     puntaje2.mostrar_info()
     
     # ===== EJEMPLO 3: Actualización de méritos =====
-    print("\n\n🔄 EJEMPLO 3: Actualización de méritos")
+    print("\n\n EJEMPLO 3: Actualización de méritos")
     print("-" * 80)
     
     puntaje3 = PuntajePostulacion(
@@ -366,7 +366,7 @@ if __name__ == "__main__":
     puntaje3.mostrar_desglose()
     
     # ===== EJEMPLO 4: Validación de errores =====
-    print("\n\n❌ EJEMPLO 4: Validación de nota inválida")
+    print("\n\n EJEMPLO 4: Validación de nota inválida")
     print("-" * 80)
     
     try:
@@ -382,27 +382,27 @@ if __name__ == "__main__":
     except ValueError as e:
         print(f"ERROR CAPTURADO: {e}")
     
-    print(f"\n📊 Total puntajes creados: {PuntajePostulacion.obtener_total()}")
+    print(f"\n Total puntajes creados: {PuntajePostulacion.obtener_total()}")
     
     print("\n" + "=" * 80)
     print("PRINCIPIOS SOLID APLICADOS:")
     print("=" * 80)
-    print("✅ S - Single Responsibility: Cada clase tiene UNA responsabilidad")
+    print(" S - Single Responsibility: Cada clase tiene UNA responsabilidad")
     print("   • PuntajePostulacion: gestión de puntaje")
     print("   • ValidadorNotasPuntaje: validación de notas")
     print("   • CalculadorPuntajePostulacion: cálculo de puntaje")
     print("   • FormateadorSalidaPuntaje: formateo de salida")
     print()
-    print("✅ O - Open/Closed: Extensible sin modificar código existente")
+    print(" O - Open/Closed: Extensible sin modificar código existente")
     print("   • Nuevas validaciones en ValidadorNotasPuntaje")
     print("   • Nuevos cálculos en CalculadorPuntajePostulacion")
     print("   • Nuevos formatos en FormateadorSalidaPuntaje")
     print()
-    print("✅ L - Liskov Substitution: PuntajePostulacion sustituye a sus interfaces")
+    print(" L - Liskov Substitution: PuntajePostulacion sustituye a sus interfaces")
     print()
-    print("✅ I - Interface Segregation: Interfaces específicas y pequeñas")
+    print(" I - Interface Segregation: Interfaces específicas y pequeñas")
     print("   • IValidableNotas, ICalculablePuntajeTotal")
     print()
-    print("✅ D - Dependency Inversion: Depende de abstracciones")
+    print(" D - Dependency Inversion: Depende de abstracciones")
     print("   • PuntajePostulacion recibe Validador, Calculador y Formateador")
     print("=" * 80) 

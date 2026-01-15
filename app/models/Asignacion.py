@@ -308,7 +308,7 @@ if __name__ == "__main__":
     )
     
     if asignacion1.asignar():
-        print(f"✅ {asignacion1}")
+        print(f" {asignacion1}")
     
     print(f"Cupos restantes carrera 101: {servicio_cupos.obtener_cupos_disponibles(101)}")
     
@@ -327,7 +327,7 @@ if __name__ == "__main__":
     )
     
     if not asignacion2.asignar():
-        print(f"❌ {asignacion2}")
+        print(f" {asignacion2}")
         print(f"   Motivo: {asignacion2.observaciones}")
     
     # ===== EJEMPLO 3: Asignación y cancelación =====
@@ -354,19 +354,19 @@ if __name__ == "__main__":
     print("\n" + "=" * 80)
     print("PRINCIPIOS SOLID APLICADOS:")
     print("=" * 80)
-    print("✅ S - Single Responsibility: Cada clase tiene UNA responsabilidad")
+    print(" S - Single Responsibility: Cada clase tiene UNA responsabilidad")
     print("   • Asignacion: gestión de asignación")
     print("   • ServicioCupos: gestión de cupos")
     print("   • ValidadorAsignacion: validación de requisitos")
     print()
-    print("✅ O - Open/Closed: Extensible sin modificar código existente")
+    print(" O - Open/Closed: Extensible sin modificar código existente")
     print("   • Nuevas validaciones se agregan en ValidadorAsignacion")
     print()
-    print("✅ L - Liskov Substitution: Asignacion sustituye a ProcesoAcademico")
+    print(" L - Liskov Substitution: Asignacion sustituye a ProcesoAcademico")
     print()
-    print("✅ I - Interface Segregation: Interfaces específicas y pequeñas")
+    print(" I - Interface Segregation: Interfaces específicas y pequeñas")
     print("   • IValidableRequisitos, IProcesoCancelable, IProcesoCompletable")
     print()
-    print("✅ D - Dependency Inversion: Depende de abstracciones")
+    print(" D - Dependency Inversion: Depende de abstracciones")
     print("   • Asignacion recibe ValidadorAsignacion y ServicioCupos")
     print("=" * 80)
