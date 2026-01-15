@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carreras ULEAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: clamp(24px, 5vw, 32px);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: clamp(13px, 3vw, 16px);
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Flash Messages */
+        .flash {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .flash.warning {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 5px solid #ffc107;
+        }
+
+        /* Estadísticas */
+        .stats-container {
+            background: linear-gradient(135deg, #70AD47 0%, #5B9C3A 100%);
+            color: white;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            text-align: center;
+        }
+
+        .stat-box h4 {
+            font-size: 12px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .stat-box p {
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: bold;
+        }
+
+        /* Facultades */
+        .facultad-section {
+            margin-bottom: 30px;
+        }
+
+        .facultad-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Carreras Grid */
+        .carreras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .carrera-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 18px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carrera-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, #70AD47 0%, #5B9C3A 100%);
+        }
+
+        .carrera-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: #70AD47;
+        }
+
+        .carrera-card h3 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 17px;
+            padding-left: 10px;
+            line-height: 1.3;
+        }
+
+        .carrera-id {
+            background: #70AD47;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .carrera-info {
+            margin: 8px 0;
+            color: #555;
+            font-size: 13px;
+            padding-left: 10px;
+            line-height: 1.4;
+        }
+
+        .carrera-info strong {
+            color: #333;
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-right: 4px;
+            margin-top: 4px;
+        }
+
+        .badge.presencial {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge.semipresencial {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge.jornada {
+            background: #e7e7ff;
+            color: #5555aa;
+        }
+
+        .badge.activa {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .cupos {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 12px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 18px;
+            }
+
+            .carreras-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .carrera-card {
+                padding: 15px;
+            }
+
+            .carrera-card h3 {
+                font-size: 15px;
+            }
+
+            .carrera-info {
+                font-size: 12px;
+            }
+
+            .facultad-header {
+                font-size: 16px;
+                padding: 10px 15px;
+            }
+
+            .stats-container {
+                padding: 15px;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carrera-info strong {
+                display: block;
+                margin-bottom: 3px;
+                min-width: auto;
+            }
+
+            .badge {
+                font-size: 9px;
+                padding: 2px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/dashboard" class="back-link">← Volver al Dashboard</a>
+
+        <h1>📚 Carreras Universitarias</h1>
+        <p class="subtitle">Universidad Laica Eloy Alfaro de Manabí</p>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Estadísticas -->
+        {% if carreras %}
+        <div class="stats-container">
+            <div class="stat-box">
+                <h4>TOTAL CARRERAS</h4>
+                <p>{{ carreras|length }}</p>
+            </div>
+            <div class="stat-box">
+                <h4>CARRERAS ACTIVAS</h4>
+                <p>{{ carreras|selectattr('estado', 'equalto', 'ACTIVA')|list|length }}</p>
+            </div>
+            <div class="stat-box">
+                <h4>CUPOS DISPONIBLES</h4>
+                <p>{{ carreras|sum(attribute='cupos_disponibles') }}</p>
+            </div>
+            <div class="stat-box">
+                <h4>FACULTADES</h4>
+                <p>{{ carreras|map(attribute='facultad')|unique|list|length }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Carreras agrupadas por Facultad -->
+        {% if carreras_por_facultad %}
+            {% for facultad, carreras_facultad in carreras_por_facultad.items() %}
+            <div class="facultad-section">
+                <div class="facultad-header">
+                    🏛️ {{ facultad }}
+                </div>
+                
+                <div class="carreras-grid">
+                    {% for carrera in carreras_facultad %}
+                    <div class="carrera-card">
+                        <span class="carrera-id">ID: {{ carrera.id_carrera }}</span>
+                        
+                        <h3>{{ carrera.nombre_carrera }}</h3>
+                        
+                        <div class="carrera-info">
+                            <strong>Duración:</strong> {{ carrera.duracion_semestres }} semestres
+                        </div>
+                        
+                        <div class="carrera-info">
+                            <strong>Modalidad:</strong>
+                            {% for modalidad in carrera.modalidad.split(',') %}
+                                <span class="badge {{ 'presencial' if 'PRESENCIAL' in modalidad else 'semipresencial' }}">
+                                    {{ modalidad }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="carrera-info">
+                            <strong>Jornadas:</strong><br>
+                            {% for jornada in carrera.jornadas_disponibles.split(',') %}
+                                <span class="badge jornada">{{ jornada }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="carrera-info">
+                            <strong>Estado:</strong>
+                            <span class="badge activa">{{ carrera.estado }}</span>
+                        </div>
+                        
+                        <div class="cupos">
+                            📊 {{ carrera.cupos_disponibles }} Cupos Disponibles
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        {% elif carreras %}
+            <!-- Vista sin agrupar -->
+            <div class="carreras-grid">
+                {% for carrera in carreras %}
+                <div class="carrera-card">
+                    <span class="carrera-id">ID: {{ carrera.id_carrera }}</span>
+                    
+                    <h3>{{ carrera.nombre_carrera }}</h3>
+                    
+                    <div class="carrera-info">
+                        <strong>Facultad:</strong> {{ carrera.facultad }}
+                    </div>
+                    
+                    <div class="carrera-info">
+                        <strong>Duración:</strong> {{ carrera.duracion_semestres }} semestres
+                    </div>
+                    
+                    <div class="carrera-info">
+                        <strong>Modalidad:</strong> {{ carrera.modalidad }}
+                    </div>
+                    
+                    <div class="carrera-info">
+                        <strong>Jornadas:</strong> {{ carrera.jornadas_disponibles }}
+                    </div>
+                    
+                    <div class="cupos">
+                        📊 {{ carrera.cupos_disponibles }} Cupos Disponibles
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="text-align: center; padding: 30px; color: #666;">
+                <p style="font-size: 16px;">No hay carreras registradas en el sistema</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

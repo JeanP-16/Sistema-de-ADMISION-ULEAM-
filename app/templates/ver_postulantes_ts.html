@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos los Postulantes - Sistema Tradicional</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .header-section {
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .btn-volver {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .btn-volver:hover {
+            background-color: #764ba2;
+            color: white;
+        }
+        .badge {
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        .empty-state i {
+            font-size: 4rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index_ts') }}" class="btn-volver">
+            <i class="bi bi-arrow-left"></i> Volver al Inicio
+        </a>
+        
+        <div class="header-section">
+            <h1><i class="bi bi-people-fill"></i> Todos los Postulantes</h1>
+            <p class="text-muted">Lista completa de postulantes registrados en el sistema Excel</p>
+        </div>
+
+        {% if postulantes and postulantes|length > 0 %}
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> Total de postulantes: <strong>{{ postulantes|length }}</strong>
+        </div>
+
+        <div class="table-container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Género</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for postulante in postulantes %}
+                    <tr>
+                        <td><strong>{{ postulante.cedula }}</strong></td>
+                        <td>{{ postulante.nombres }}</td>
+                        <td>{{ postulante.apellidos }}</td>
+                        <td>{{ postulante.email }}</td>
+                        <td>{{ postulante.telefono }}</td>
+                        <td>{{ postulante.direccion }}</td>
+                        <td>{{ postulante.fecha_nacimiento }}</td>
+                        <td>
+                            {% if postulante.genero == 'M' %}
+                                <span class="badge bg-primary">Masculino</span>
+                            {% elif postulante.genero == 'F' %}
+                                <span class="badge bg-danger">Femenino</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ postulante.genero }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="bi bi-inbox"></i>
+            <h3>No hay postulantes registrados</h3>
+            <p>Aún no se han registrado postulantes en el sistema.</p>
+            <a href="{{ url_for('crear_registro_ts') }}" class="btn btn-primary mt-3">
+                <i class="bi bi-plus-circle"></i> Registrar Primer Postulante
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

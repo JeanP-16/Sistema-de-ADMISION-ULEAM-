@@ -2,25 +2,248 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Pagina Principal</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Replica.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULEAM - Sistema de Admisión</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .login-container {
+            background: white;
+            padding: clamp(25px, 5vw, 40px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            width: clamp(70px, 15vw, 100px);
+            height: clamp(70px, 15vw, 100px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(36px, 8vw, 48px);
+        }
+
+        h1 {
+            color: #333;
+            font-size: clamp(20px, 4.5vw, 28px);
+            margin-bottom: 8px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: clamp(12px, 3vw, 14px);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: clamp(13px, 3vw, 14px);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: clamp(14px, 3.5vw, 16px);
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(14px, 3.5vw, 16px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .flash-messages {
+            margin-bottom: 18px;
+        }
+
+        .flash {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            animation: slideIn 0.3s ease-out;
+            font-size: clamp(12px, 3vw, 14px);
+        }
+
+        .flash.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+
+        .flash.success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+
+        .flash.warning {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+
+        .flash.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: clamp(11px, 2.5vw, 12px);
+        }
+
+        .footer p {
+            margin: 3px 0;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .login-container {
+                padding: 20px;
+            }
+
+            input[type="text"] {
+                padding: 10px 12px;
+            }
+
+            .btn-login {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h2>DBCANU | ADMISION | INICIAR SESIÓN</h2>
-            <form action="/login" method="POST" name="form">
-                <label>Usuario</label>
-                <input type="text" name="usuario" required><br><br>
-    
-                <label>Contraseña</label>
-                <input type="password" name="password" required><br><br>
-                
-                <a href="" target="_blank">Recuperar Contraseña</a><br>
-                <button type="button">Regítrate aquí</button>
-                <button type="submit">Iniciar Sesión</button>
-            </form>
+    <div class="login-container">
+        <!-- Logo y Título -->
+        <div class="logo-container">
+            <div class="logo">🎓</div>
+            <h1>Universidad Laica Eloy Alfaro de Manabí</h1>
+            <p class="subtitle">Sistema de Admisión 2025</p>
         </div>
-    </header>        
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Formulario de Login -->
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="usuario">Número de Cédula</label>
+                <input 
+                    type="text" 
+                    id="usuario" 
+                    name="usuario" 
+                    placeholder="Ingrese su cédula (10 dígitos)" 
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    required
+                    autocomplete="off"
+                >
+            </div>
+            <button type="submit" class="btn-login">Ingresar al Sistema</button>
+        </form>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Sistema con Excel + Flask-Mail</strong></p>
+            <p>© 2025 ULEAM - Todos los derechos reservados</p>
+        </div>
+    </div>
 </body>
 </html>
